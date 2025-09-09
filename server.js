@@ -2,12 +2,14 @@ import express from 'express';
 import dotenv from 'dotenv';
 import { sequelize } from './models/config.js';
 import registerRoutes from './routes/register.js';
+import dashboardRoutes from './routes/dashboard.js';
 
 dotenv.config();
 const app = express();
 
 app.use(express.json());
 app.use('/api', registerRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 app.get('/', (req, res) => res.send('API is running'));
 
 sequelize.sync({ alter: true })

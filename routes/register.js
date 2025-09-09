@@ -1,6 +1,10 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
 import { Citizen } from '../models/user.js';
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const router = express.Router();
 
@@ -46,6 +50,16 @@ router.post('/register', async (req, res) => {
       lastname,
       locationAddress,
     });
+
+    const token = jwt.sign(
+      {
+      id: newUser.citizen_id, email: newUser.email
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: '1h' 
+      }
+  )
 
     res.status(201).json({
       message: 'Citizen registered successfully',

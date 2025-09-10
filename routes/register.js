@@ -6,7 +6,7 @@ import { Citizen, Admin, MunicipalPersonnel } from '../models/user.js';
 const router = express.Router();
 
 function validatePassword(password) {
-  const lengthCheck = password.length === 8;
+  const lengthCheck = password.length >= 8;
   const uppercaseCheck = /[A-Z]/.test(password);
   const digitCheck = /\d/.test(password);
   const symbolCheck = /[!@#$%^&*(),.?":{}|<>]/.test(password);
@@ -17,7 +17,8 @@ router.post('/register/citizen', async (req, res) => {
   const { email, password, firstname, lastname, locationAddress } = req.body;
 
   if (!email || !password) return res.status(400).json({ error: 'Email and password required' });
-  if (!validatePassword(password)) return res.status(400).json({ error: 'Password must be exactly 8 characters, include 1 uppercase, 1 digit, 1 symbol' });
+  if (!validatePassword(password)) return 
+  res.status(400).json({ error: 'Password at least 8 characters, include 1 uppercase, 1 digit, 1 symbol' });
 
   try {
     const exists = await Citizen.findOne({ where: { email } });
@@ -35,4 +36,5 @@ router.post('/register/citizen', async (req, res) => {
   }
 });
 
-export default router;
+export {validatePassword}
+export default router 

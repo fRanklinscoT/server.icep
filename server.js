@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import { sequelize } from './models/config.js';
 import registerRoutes from './routes/register.js';
 import dashboardRoutes from './routes/dashboard.js';
+import resetRoutes from './routes/reset.js';
 
 dotenv.config();
 const app = express();
@@ -10,6 +11,7 @@ const app = express();
 app.use(express.json());
 app.use('/api', registerRoutes);
 app.use('/api/dashboard', dashboardRoutes);
+app.use('/api', resetRoutes);
 app.get('/', (req, res) => res.send('API is running'));
 
 sequelize.sync({ alter: true })

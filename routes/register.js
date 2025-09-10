@@ -6,7 +6,7 @@ import { Citizen, Admin, MunicipalPersonnel } from '../models/user.js';
 const router = express.Router();
 
 function validatePassword(password) {
-  const lengthCheck = password.length === 8;
+  const lengthCheck = password.length >= 8;
   const uppercaseCheck = /[A-Z]/.test(password);
   const digitCheck = /\d/.test(password);
   const symbolCheck = /[!@#$%^&*(),.?":{}|<>]/.test(password);

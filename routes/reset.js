@@ -16,7 +16,7 @@ const SendEmail = async(email,token,username) => {
         }
     });
 
-    const resetlink = `http://localhost:3000/reset-password?token=${token}`;
+    const resetlink = `http://localhost:5173/reset-password?token=${token}`;
 
     const mailOptions = {
         from: process.env.EMAIL_USER,
@@ -45,9 +45,9 @@ const SendEmail = async(email,token,username) => {
             user = municipal;
         }   
         if (!user) return res.status(404).json({ error: 'User not found' });
-        const token = jwt.sign({ id: user.citizen_id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '5m' });
+        const token = jwt.sign({ id: user.citizen_id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '25m' });
         await SendEmail(email, token,user.firstname || 'User');
-        res.status(200).json({ message: 'Password reset email sent token is '+ token });
+        res.status(200).json({ message: 'Password reset Link sent ' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Server error' });

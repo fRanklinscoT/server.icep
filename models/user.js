@@ -96,15 +96,6 @@ const MunicipalPersonnel = sequelize.define('municipalPersonnel', {
     paranoid: true
 });
 
-const hashPassword = async (user) => {
-    if (user.password) {
-        user.password = await bcrypt.hash(user.password, 10);
-    }
-};
-
-Citizen.beforeCreate(hashPassword);
-Admin.beforeCreate(hashPassword);
-MunicipalPersonnel.beforeCreate(hashPassword);
 
 export { 
     Citizen,

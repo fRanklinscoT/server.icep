@@ -1,11 +1,20 @@
+### Login citizen
+POST http://localhost:3000/api/login
+Content-Type: application/json
 
+{
+  "email": "dellar@gmail.com",
+  "password": "Franklin@123"
+}
+
+### Register citizen
 POST http://localhost:3000/api/register/citizen
 Content-Type: application/json
 
 {
-  "email": "franklin.doe@example.com",
-  "password": "StrongPassword123@#",
-  "firstname": "Jane",
-  "lastname": "Doe",
-  "locationAddress": "123 Main St"
+  "email": "dellar@gmail.com",
+  "password": "Franklin@123",
+  "firstname": "Della",
+  "lastname": "Raolane",
+  "locationAddress": "226 west street"
 }

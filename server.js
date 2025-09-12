@@ -17,7 +17,8 @@ app.use(express.json());
 app.use('/api', registerRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api', resetRoutes);
-app.use('/api', loginRoutes)
+app.use('/api', loginRoutes);
+app.use("/api/auth", authRoutes);
 app.get('/', (req, res) => res.send('API is running'));
 
 sequelize.sync({ alter: true })

@@ -52,8 +52,6 @@ const SendEmail = async(email,token,username) => {
         console.error(error);
         res.status(500).json({ error: 'Server error' });
     }
-
-
 });
 
 router.post('/reset-password', async (req, res) => {
